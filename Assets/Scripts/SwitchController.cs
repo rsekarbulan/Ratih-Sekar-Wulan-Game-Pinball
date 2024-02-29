@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class SwitchController : MonoBehaviour
@@ -15,7 +16,9 @@ public class SwitchController : MonoBehaviour
     public Collider bola;
     public Material offMaterial;
     public Material onMaterial;
+    public float score;
 
+    public ScoreManager scoreManager;
     private SwitchState state;
     private Renderer renderer;
 
@@ -51,9 +54,9 @@ public class SwitchController : MonoBehaviour
             StartCoroutine(BlinkTimerStart(5));
         }
     }
-
     private void Toggle()
     {
+        scoreManager.AddScore(score);
         if (state == SwitchState.On)
         {
             Set(false);

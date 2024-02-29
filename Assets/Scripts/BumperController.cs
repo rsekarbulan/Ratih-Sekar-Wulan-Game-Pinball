@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class BumperController : MonoBehaviour
 {
     public Collider bola;
     public float multiplier;
     public Color color;
+    public AudioManager audioManager;
+    public VFXManager VFXManager;
+    public ScoreManager scoreManager;
+    public float score;
 
     private Renderer renderer;
     private Animator animator;
@@ -27,6 +32,10 @@ public class BumperController : MonoBehaviour
             bolaRig.velocity *= multiplier;
 
             animator.SetTrigger("hit");
+
+            audioManager.PlaySFX(collision.transform.position);
+            VFXManager.PlayVFX(collision.transform.position);
+            scoreManager.AddScore(score);
         }
     }
 }
