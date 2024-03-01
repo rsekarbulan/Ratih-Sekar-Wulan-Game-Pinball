@@ -18,6 +18,8 @@ public class SwitchController : MonoBehaviour
     public Material onMaterial;
     public float score;
 
+    public AudioManager audioManager;
+    public VFXManager VFXManager;
     public ScoreManager scoreManager;
     private SwitchState state;
     private Renderer renderer;
@@ -36,6 +38,8 @@ public class SwitchController : MonoBehaviour
         if (other == bola)
         {
             Toggle();
+            audioManager.PlaySwitchSFX(other.transform.position);
+            VFXManager.PlaySwitchVFX(other.transform.position);
         }
     }
 
